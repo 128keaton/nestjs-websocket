@@ -25,6 +25,8 @@ jobs:
       - run: npm run test:cov
       - name: Record LCOV
         uses: dethereum/github-actions-report-lcov@v1.0.0
+        with:
+          coverage-files: coverage/lcov.*.info
       - run: npm run build
   
 
@@ -37,6 +39,6 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm publish
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
